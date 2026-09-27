@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Dashboard | NovaCart</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+        🛍️ NovaCart
+    </a>
+
+    <nav>
+
+        <a href="index.html">
+            Store
+        </a>
+
+        <a href="cart.html">
+            Cart
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="container admin-page">
+
+    <div class="section-heading">
+
+        <div>
+            <h1>Admin Dashboard</h1>
+
+            <p>
+                Manage your product catalog.
+            </p>
+        </div>
+
+    </div>
+
+
+    <section class="admin-form">
+
+        <h2 id="formTitle">
+            Add New Product
+        </h2>
+
+
+        <form id="productForm">
+
+            <input
+                type="hidden"
+                id="editId"
+            >
+
+
+            <div class="form-grid">
+
+                <div>
+
+                    <label>Product Name</label>
+
+                    <input
+                        id="productTitle"
+                        type="text"
+                        required
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label>Price</label>
+
+                    <input
+                        id="productPrice"
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label>Category</label>
+
+                    <select id="productCategory">
+
+                        <option value="electronics">
+                            Electronics
+                        </option>
+
+                        <option value="clothing">
+                            Clothing
+                        </option>
+
+                        <option value="jewelery">
+                            Jewelery
+                        </option>
+
+                        <option value="books">
+                            Books
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div>
+
+                    <label>Image URL</label>
+
+                    <input
+                        id="productImage"
+                        type="url"
+                        placeholder="https://..."
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <label>Description</label>
+
+            <textarea
+                id="productDescription"
+                rows="4"
+                required
+            ></textarea>
+
+
+            <button
+                type="submit"
+                class="btn primary-btn"
+            >
+                Save Product
+            </button>
+
+
+            <button
+                type="button"
+                id="cancelEdit"
+                class="btn secondary-btn hidden"
+            >
+                Cancel
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <section>
+
+        <div class="section-heading">
+
+            <h2>Products</h2>
+
+            <span id="adminCount">
+                0 products
+            </span>
+
+        </div>
+
+
+        <div
+            id="adminProducts"
+            class="admin-products"
+        ></div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>© 2026 NovaCart. Capstone Project.</p>
+</footer>
+
+
+<script type="module" src="js/admin.js"></script>
+
+</body>
+</html>

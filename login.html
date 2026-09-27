@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | NovaCart</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body class="auth-page">
+
+<div class="auth-card">
+
+    <div class="auth-logo">
+        🛍️ NovaCart
+    </div>
+
+    <h1>Welcome Back</h1>
+
+    <p class="muted">
+        Login to continue shopping.
+    </p>
+
+
+    <form id="loginForm">
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="you@example.com"
+            required
+        >
+
+
+        <label>Password</label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter password"
+            required
+        >
+
+
+        <button type="submit" class="btn primary-btn full">
+            Login
+        </button>
+
+    </form>
+
+
+    <div id="loginMessage"></div>
+
+
+    <p class="demo-login">
+        Demo: any valid email + password
+    </p>
+
+    <a href="index.html" class="back-link">
+        ← Continue without login
+    </a>
+
+</div>
+
+
+<script type="module">
+
+import { login } from "./js/auth.js";
+
+const form = document.getElementById("loginForm");
+const message = document.getElementById("loginMessage");
+
+form.addEventListener("submit", (event) => {
+
+    event.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (!email || !password) {
+        message.innerHTML =
+            `<p class="error">Please enter email and password.</p>`;
+        return;
+    }
+
+    login(email);
+
+    message.innerHTML =
+        `<p class="success">Login successful!</p>`;
+
+    setTimeout(() => {
+        window.location.href = "index.html";
+    }, 700);
+
+});
+
+</script>
+
+</body>
+</html>

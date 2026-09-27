@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NovaCart | E-Commerce Store</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+        🛍️ NovaCart
+    </a>
+
+    <div class="search-box">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search products..."
+        >
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="cart.html">
+            Cart <span id="cartCount" class="badge">0</span>
+        </a>
+        <a href="admin.html">Admin</a>
+        <span id="userArea"></span>
+    </nav>
+
+</header>
+
+<main>
+
+    <section class="hero">
+
+        <div>
+            <p class="hero-small">WELCOME TO NOVACART</p>
+
+            <h1>
+                Shop smarter.<br>
+                Live better.
+            </h1>
+
+            <p>
+                Discover quality products at great prices.
+            </p>
+
+            <a href="#products" class="btn primary-btn">
+                Shop Now
+            </a>
+        </div>
+
+    </section>
+
+
+    <section class="container">
+
+        <div class="section-heading">
+            <div>
+                <h2>Discover Products</h2>
+                <p id="resultText">Loading products...</p>
+            </div>
+
+            <select id="sortSelect">
+                <option value="default">Sort By</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+                <option value="name">Name A-Z</option>
+            </select>
+        </div>
+
+
+        <div id="categoryTabs" class="category-tabs">
+            <button class="category-btn active" data-category="all">
+                All
+            </button>
+        </div>
+
+
+        <div id="products" class="product-grid"></div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>© 2026 NovaCart. Capstone Project.</p>
+</footer>
+
+
+<script type="module" src="js/app.js"></script>
+
+</body>
+</html>

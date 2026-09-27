@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Product | NovaCart</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+        🛍️ NovaCart
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+
+        <a href="cart.html">
+            Cart <span id="cartCount" class="badge">0</span>
+        </a>
+
+        <span id="userArea"></span>
+    </nav>
+
+</header>
+
+
+<main class="container product-page">
+
+    <div id="productDetails">
+
+        <div class="loading">
+            Loading product...
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+    <p>© 2026 NovaCart. Capstone Project.</p>
+</footer>
+
+
+<script type="module">
+
+import { getProductById } from "./js/api.js";
+import {
+    getCart,
+    saveCart
+} from "./js/storage.js";
+
+const container = document.getElementById("productDetails");
+
+const params = new URLSearchParams(window.location.search);
+const productId = Number(params.get("id"));
+
+const cartCount = document.getElementById("cartCount");
+
+
+function updateCartCount() {
+
+    const cart = getCart();
+
+    const count = cart.reduce(
+        (total, item) => total + item.quantity,
+        0
+    );
+
+    cartCount.textContent = count;
+}
+
+
+function addToCart(product) {
+
+    const cart = getCart();
+
+    const existing = cart.find(
+        item => item.id === product.id
+    );
+
+    if (existing) {
+        existing.quantity++;
+    } else {
+
+        cart.push({
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            image: product.image,
+            quantity: 1
+        });
+
+    }
+
+    saveCart(cart);
+
+    updateCartCount();
+
+    alert("Product added to cart!");
+}
+
+
+async function loadProduct() {
+
+    try {
+
+        const product =
+            await getProductById(productId);
+
+        container.innerHTML = `
+
+            <div class="product-detail">
+
+                <div class="product-detail-image">
+
+                    <img
+                        src="${product.image}"
+                        alt="${product.title}"
+                    >
+
+                </div>
+
+
+                <div class="product-detail-info">
+
+                    <span class="category-label">
+                        ${product.category}
+                    </span>
+
+                    <h1>${product.title}</h1>
+
+                    <div class="rating">
+                        ⭐ ${product.rating?.rate || "N/A"}
+                        (${product.rating?.count || 0} reviews)
+                    </div>
+
+                    <h2 class="product-price">
+                        $${product.price.toFixed(2)}
+                    </h2>
+
+                    <p>
+                        ${product.description}
+                    </p>
+
+                    <button
+                        id="addButton"
+                        class="btn primary-btn"
+                    >
+                        Add to Cart
+                    </button>
+
+                    <a
+                        href="cart.html"
+                        class="btn secondary-btn"
+                    >
+                        View Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+        `;
+
+        document
+            .getElementById("addButton")
+            .addEventListener(
+                "click",
+                () => addToCart(product)
+            );
+
+    } catch (error) {
+
+        container.innerHTML = `
+            <div class="error-box">
+                Unable to load product.
+            </div>
+        `;
+
+    }
+
+}
+
+
+updateCartCount();
+loadProduct();
+
+</script>
+
+</body>
+</html>

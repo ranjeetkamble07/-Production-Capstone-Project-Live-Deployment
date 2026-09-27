@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Shopping Cart | NovaCart</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+        🛍️ NovaCart
+    </a>
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="cart.html">
+            Cart
+            <span id="cartCount" class="badge">0</span>
+        </a>
+
+        <span id="userArea"></span>
+
+    </nav>
+
+</header>
+
+
+<main class="container cart-page">
+
+    <div class="section-heading">
+
+        <div>
+            <h1>Shopping Cart</h1>
+            <p>Review your selected products.</p>
+        </div>
+
+    </div>
+
+
+    <div class="cart-layout">
+
+        <div id="cartItems"></div>
+
+
+        <aside class="cart-summary">
+
+            <h2>Order Summary</h2>
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <strong id="subtotal">$0.00</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Shipping</span>
+                <strong>Free</strong>
+            </div>
+
+            <hr>
+
+            <div class="summary-total">
+                <span>Total</span>
+                <strong id="total">$0.00</strong>
+            </div>
+
+            <button
+                id="checkoutButton"
+                class="btn primary-btn full"
+            >
+                Checkout
+            </button>
+
+        </aside>
+
+    </div>
+
+</main>
+
+
+<footer>
+    <p>© 2026 NovaCart. Capstone Project.</p>
+</footer>
+
+
+<script type="module" src="js/cart.js"></script>
+
+</body>
+</html>
